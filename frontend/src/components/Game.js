@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import Laser from "./Laser";
 import LaserWeapon from "./LaserWeapon";
 import Player from "./Player";
+import SpawnPortal from "./SpawnPortal";
 
 let x = 230;
 let leftPressed = false;
@@ -9,12 +10,13 @@ let rightPressed = false;
 let shooting = false;
 let wpn = new LaserWeapon();
 let player = new Player(wpn, x);
+let spawn = new SpawnPortal();
 const Game = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const render = () => {
-      addControls();
+      addControls(player);
 
       const canvas = canvasRef.current;
       canvas.width = 600;
@@ -23,7 +25,7 @@ const Game = () => {
 
       const setStyle = () => {
         ctx.shadowColor = "d53";
-        ctx.shadowBlur = 20;
+        ctx.shadowBlur = 200;
         ctx.lineJoin = "bevel";
       };
 
@@ -33,17 +35,8 @@ const Game = () => {
       ctx.beginPath();
       player.draw(ctx, x);
       wpn.draw(ctx);
-
-      if (leftPressed) {
-        player.x = player.x - 2;
-      }
-      if (rightPressed) {
-        player.x = player.x + 2;
-      }
-
-      if (shooting) {
-        player.shoot();
-      }
+      spawn.newEnemy();
+      spawn.moveAll(ctx);
 
       requestAnimationFrame(render);
     };
@@ -51,7 +44,7 @@ const Game = () => {
     render();
   }, []);
 
-  const addControls = () => {
+  const addControls = (player) => {
     const handleKeyDown = (event) => {
       let key;
 
@@ -91,6 +84,16 @@ const Game = () => {
     };
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
+    if (leftPressed) {
+      player.x = player.x - 2;
+    }
+    if (rightPressed) {
+      player.x = player.x + 2;
+    }
+
+    if (shooting) {
+      player.shoot();
+    }
   };
 
   return (
