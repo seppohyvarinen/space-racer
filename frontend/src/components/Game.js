@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Laser from "./Laser";
 import LaserWeapon from "./LaserWeapon";
 import Player from "./Player";
@@ -11,8 +11,10 @@ let shooting = false;
 let wpn = new LaserWeapon();
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
+let points = 0;
 const Game = () => {
   const canvasRef = useRef(null);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     addKeyHandlers();
@@ -38,12 +40,15 @@ const Game = () => {
       wpn.draw(ctx);
       spawn.newEnemy();
       spawn.moveAll(ctx);
+      console.log(score);
 
       requestAnimationFrame(render);
     };
 
     render();
   }, []);
+
+  useEffect(() => {}, [score]);
 
   const addKeyHandlers = () => {
     const handleKeyDown = (event) => {
@@ -98,15 +103,21 @@ const Game = () => {
           ) {
             enemy.destroy();
             laser.destroy();
+            updateScore();
           }
         });
       });
     }
   };
 
+  const updateScore = () => {
+    points++;
+    setScore(points);
+  };
+
   return (
     <div className="gameScreen">
-      <div className="infoBoard">info here</div>
+      <div className="infoBoard">Score: {score}</div>
       <div className="canvasCrate">
         <canvas id="canvas" ref={canvasRef}></canvas>
       </div>
