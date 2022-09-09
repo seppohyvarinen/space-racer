@@ -7,7 +7,7 @@ export default class SpawnPortal {
   newEnemy() {
     if (this.spawnTimer <= 0) {
       this.enemies.push(
-        new Enemy(Math.floor(Math.random() * (650 - 0 + 1)) + 0)
+        new Enemy(Math.floor(Math.random() * (550 - 0 + 1)) + 0)
       );
       this.spawnTimer = 150;
     }
