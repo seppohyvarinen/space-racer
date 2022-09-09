@@ -15,9 +15,8 @@ const Game = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    addKeyHandlers();
     const render = () => {
-      addControls(player);
-
       const canvas = canvasRef.current;
       canvas.width = 600;
       canvas.height = 800;
@@ -34,6 +33,7 @@ const Game = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
       player.draw(ctx, x);
+      player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
       spawn.newEnemy();
       spawn.moveAll(ctx);
@@ -44,7 +44,7 @@ const Game = () => {
     render();
   }, []);
 
-  const addControls = (player) => {
+  const addKeyHandlers = () => {
     const handleKeyDown = (event) => {
       let key;
 
@@ -84,16 +84,6 @@ const Game = () => {
     };
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
-    if (leftPressed) {
-      player.x = player.x - 2;
-    }
-    if (rightPressed) {
-      player.x = player.x + 2;
-    }
-
-    if (shooting) {
-      player.shoot();
-    }
   };
 
   return (

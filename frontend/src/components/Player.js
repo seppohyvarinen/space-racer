@@ -17,4 +17,28 @@ export default class Player {
   shoot = () => {
     this.weapon.fire(this.x + 70, 650, 3);
   };
+
+  controls = (leftPressed, rightPressed, shooting) => {
+    if (leftPressed) {
+      if (this.checkScreenBoundsLeft()) {
+        this.x = this.x - 2;
+      }
+    }
+    if (rightPressed) {
+      if (this.checkScreenBoundsRight()) {
+        this.x = this.x + 2;
+      }
+    }
+
+    if (shooting) {
+      this.shoot();
+    }
+  };
+
+  checkScreenBoundsLeft() {
+    return this.x > 0 - 35;
+  }
+  checkScreenBoundsRight() {
+    return this.x < 600 - 105;
+  }
 }
