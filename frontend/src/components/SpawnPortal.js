@@ -16,9 +16,17 @@ export default class SpawnPortal {
   moveAll(ctx) {
     if (this.enemies.length !== 0) {
       this.enemies.forEach((enemy) => {
-        enemy.move();
-        enemy.draw(ctx);
+        if (!enemy.alive) {
+          const index = this.enemies.indexOf(enemy);
+          this.enemies.splice(index, 1);
+        }
+        enemy.alive && enemy.move();
+        enemy.alive && enemy.draw(ctx);
       });
     }
+  }
+
+  locations() {
+    return this.enemies;
   }
 }

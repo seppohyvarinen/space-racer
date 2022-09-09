@@ -32,6 +32,7 @@ const Game = () => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
+      collisionCheck(spawn, wpn);
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
@@ -84,6 +85,23 @@ const Game = () => {
     };
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
+  };
+
+  const collisionCheck = (spawn, wpn) => {
+    if (spawn.enemies.length != 0 && wpn.lasers.length != 0) {
+      spawn.enemies.forEach((enemy) => {
+        wpn.lasers.forEach((laser) => {
+          if (
+            enemy.y >= laser.y &&
+            laser.x >= enemy.x &&
+            laser.x <= enemy.x + 50
+          ) {
+            enemy.destroy();
+            laser.destroy();
+          }
+        });
+      });
+    }
   };
 
   return (

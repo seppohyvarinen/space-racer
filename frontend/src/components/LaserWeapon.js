@@ -15,16 +15,26 @@ export default class LaserWeapon {
   }
 
   draw(ctx) {
-    this.lasers.forEach((laser) => {
-      if (this.checkScreenBounds(laser)) {
-        const index = this.lasers.indexOf(laser);
-        this.lasers.splice(index, 1);
-      }
-      laser.draw(ctx);
-      console.log("drawing");
-    });
+    if (this.lasers.length != 0) {
+      this.lasers.forEach((laser) => {
+        if (!laser.alive) {
+          const index = this.lasers.indexOf(laser);
+          this.lasers.splice(index, 1);
+        }
+        if (this.checkScreenBounds(laser)) {
+          const index = this.lasers.indexOf(laser);
+          this.lasers.splice(index, 1);
+        }
+
+        laser.draw(ctx);
+      });
+    }
   }
   checkScreenBounds(laser) {
     return laser.y <= -laser.height;
+  }
+
+  locations() {
+    return this.lasers;
   }
 }
