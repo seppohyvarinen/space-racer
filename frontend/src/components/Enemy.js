@@ -7,7 +7,7 @@ export default class Enemy {
     this.shadowColor = "d53";
     this.shadowBlur = 200;
     this.lineJoin = "bevel";
-    this.color = "black";
+    this.color = "red";
     this.alive = true;
   }
 
@@ -16,13 +16,14 @@ export default class Enemy {
   };
 
   draw(ctx) {
-    ctx.shadowColor = "green";
-    ctx.shadowBlur = 300;
+    ctx.shadowColor = "white";
+    ctx.shadowBlur = 40;
     ctx.lineJoin = "bevel";
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = "red";
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "black";
     ctx.fillStyle = this.color;
     ctx.strokeRect(this.x, this.y, this.width, this.height);
+    ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
   getX() {
