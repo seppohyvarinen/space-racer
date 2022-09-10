@@ -14,7 +14,7 @@ let spawn = new SpawnPortal();
 let points = 0;
 let baseHealth = 5;
 
-const Game = () => {
+const Game = ({ setMode }) => {
   const canvasRef = useRef(null);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
@@ -52,8 +52,6 @@ const Game = () => {
 
     render();
   }, []);
-
-  useEffect(() => {}, [score]);
 
   const addKeyHandlers = () => {
     const handleKeyDown = (event) => {
@@ -135,6 +133,9 @@ const Game = () => {
   const updateMotherShip = () => {
     baseHealth--;
     setMotherShip(baseHealth);
+    if (baseHealth <= 0) {
+      setMode(0);
+    }
   };
 
   return (

@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      {mode === 0 ? <Menu setMode={setMode} /> : <Game />}
+      {mode === 0 ? <Menu setMode={setMode} /> : <Game setMode={setMode} />}
     </div>
   );
 }
