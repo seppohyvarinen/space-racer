@@ -12,9 +12,13 @@ let wpn = new LaserWeapon();
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
 let points = 0;
+let baseHealth = 5;
+
 const Game = () => {
   const canvasRef = useRef(null);
   const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(3);
+  const [motherShip, setMotherShip] = useState(baseHealth);
 
   useEffect(() => {
     addKeyHandlers();
@@ -35,6 +39,7 @@ const Game = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
       collisionCheck(spawn, wpn);
+      checkIfEnemyPassed(spawn);
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
@@ -110,14 +115,35 @@ const Game = () => {
     }
   };
 
+  const checkIfEnemyPassed = (spawn) => {
+    if (spawn.enemies.length != 0) {
+      spawn.enemies.forEach((enemy) => {
+        if (enemy.y >= 800) {
+          enemy.destroy();
+          updateMotherShip();
+          console.log("Hit!");
+        }
+      });
+    }
+  };
+
   const updateScore = () => {
     points++;
     setScore(points);
   };
 
+  const updateMotherShip = () => {
+    baseHealth--;
+    setMotherShip(baseHealth);
+  };
+
   return (
     <div className="gameScreen">
-      <div className="infoBoard">Score: {score}</div>
+      <div className="infoBoard">
+        <p>Score: {score}</p>
+        <p>Lives: {lives}</p>
+        <p>Mothership: {motherShip}</p>
+      </div>
       <div className="canvasCrate">
         <canvas id="canvas" ref={canvasRef}></canvas>
       </div>
