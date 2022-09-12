@@ -134,7 +134,7 @@ const Game = ({ setMode }) => {
     baseHealth--;
     setMotherShip(baseHealth);
     if (baseHealth <= 0) {
-      setMode(0);
+      setMode(2);
     }
   };
 

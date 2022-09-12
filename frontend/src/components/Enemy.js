@@ -12,7 +12,7 @@ export default class Enemy {
   }
 
   move = () => {
-    this.y = this.y + 1;
+    this.y = this.y + 3;
   };
 
   draw(ctx) {

@@ -71,3 +71,8 @@
   background-color: #fff1fd;
   grid-area: right;
 }
+.GameoverScreen {
+  background-color: #fff1fd;
+  width: 600px;
+  height: 800px;
+}
