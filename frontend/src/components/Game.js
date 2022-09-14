@@ -19,6 +19,7 @@ const Game = ({ setMode }) => {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [motherShip, setMotherShip] = useState(baseHealth);
+  const [health, setHealth] = useState(3);
 
   useEffect(() => {
     addKeyHandlers();
@@ -104,9 +105,11 @@ const Game = ({ setMode }) => {
             laser.x >= enemy.x &&
             laser.x <= enemy.x + 50
           ) {
-            enemy.destroy();
+            enemy.takeHit();
             laser.destroy();
-            updateScore();
+            if (!enemy.alive) {
+              updateScore();
+            }
           }
         });
       });
