@@ -8,9 +8,6 @@ const Menu = ({ setMode }) => {
         fullWidth={true}
         color="secondary"
         size="large"
-        style={{
-          background: "linear-gradient(to right bottom, #FFB5FF, #82ffa1)",
-        }}
         onClick={() => setMode(1)}
       >
         Start Game

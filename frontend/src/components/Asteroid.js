@@ -1,4 +1,4 @@
-export default class Enemy {
+export default class Asteroid {
   constructor(x) {
     this.x = x;
     this.y = 0;

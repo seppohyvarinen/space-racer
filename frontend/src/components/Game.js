@@ -44,7 +44,7 @@ const Game = ({ setMode }) => {
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
-      spawn.newEnemy();
+      spawn.newAsteroid();
       spawn.moveAll(ctx);
       console.log(score);
 
@@ -97,8 +97,8 @@ const Game = ({ setMode }) => {
   };
 
   const collisionCheck = (spawn, wpn) => {
-    if (spawn.enemies.length != 0 && wpn.lasers.length != 0) {
-      spawn.enemies.forEach((enemy) => {
+    if (spawn.asteroids.length != 0 && wpn.lasers.length != 0) {
+      spawn.asteroids.forEach((enemy) => {
         wpn.lasers.forEach((laser) => {
           if (
             enemy.y >= laser.y &&
@@ -117,8 +117,8 @@ const Game = ({ setMode }) => {
   };
 
   const checkIfEnemyPassed = (spawn) => {
-    if (spawn.enemies.length != 0) {
-      spawn.enemies.forEach((enemy) => {
+    if (spawn.asteroids.length != 0) {
+      spawn.asteroids.forEach((enemy) => {
         if (enemy.y >= 800) {
           enemy.destroy();
           updateMotherShip();
