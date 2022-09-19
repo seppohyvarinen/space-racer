@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { increment, reset } from "../redux/Score";
+import { currentHealth, increment, reset, takeHit } from "../redux/Score";
+
+import Store from "../redux/Store";
 
 import Laser from "./Laser";
 import LaserWeapon from "./LaserWeapon";
@@ -14,18 +16,14 @@ let shooting = false;
 let wpn = new LaserWeapon();
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
-let points = 0;
-let baseHealth = 5;
 
 const Game = ({ setMode }) => {
   const canvasRef = useRef(null);
-  const [score, setScore] = useState(0);
-  const [lives, setLives] = useState(3);
-  const [motherShip, setMotherShip] = useState(baseHealth);
-  const [health, setHealth] = useState(3);
 
-  const { count } = useSelector((state) => state.counter);
+  const { count, health } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
+
+  Store.subscribe(() => {});
 
   useEffect(() => {
     addKeyHandlers();
@@ -67,15 +65,15 @@ const Game = ({ setMode }) => {
         key = event.keyCode;
       }
 
-      if (key == 37) {
+      if (key === 37) {
         event.preventDefault();
         leftPressed = true;
       }
-      if (key == 39) {
+      if (key === 39) {
         event.preventDefault();
         rightPressed = true;
       }
-      if (key == 32) {
+      if (key === 32) {
         event.preventDefault();
         shooting = true;
       }
@@ -87,13 +85,13 @@ const Game = ({ setMode }) => {
         key = event.keyCode;
       }
 
-      if (key == 37) {
+      if (key === 37) {
         leftPressed = false;
       }
-      if (key == 39) {
+      if (key === 39) {
         rightPressed = false;
       }
-      if (key == 32) {
+      if (key === 32) {
         shooting = false;
       }
     };
@@ -102,7 +100,7 @@ const Game = ({ setMode }) => {
   };
 
   const collisionCheck = (spawn, wpn) => {
-    if (spawn.asteroids.length != 0 && wpn.lasers.length != 0) {
+    if (spawn.asteroids.length !== 0 && wpn.lasers.length !== 0) {
       spawn.asteroids.forEach((enemy) => {
         wpn.lasers.forEach((laser) => {
           if (
@@ -124,9 +122,14 @@ const Game = ({ setMode }) => {
   const checkIfEnemyPassed = (spawn) => {
     if (spawn.asteroids.length != 0) {
       spawn.asteroids.forEach((enemy) => {
-        if (enemy.y >= 800) {
+        if (
+          enemy.y >= 630 &&
+          enemy.y <= 700 &&
+          enemy.x >= player.x &&
+          enemy.x <= player.x + 50
+        ) {
           enemy.destroy();
-          updateMotherShip();
+          updateShip();
           console.log("Hit!");
         }
       });
@@ -137,10 +140,11 @@ const Game = ({ setMode }) => {
     dispatch(increment());
   };
 
-  const updateMotherShip = () => {
-    baseHealth--;
-    setMotherShip(baseHealth);
-    if (baseHealth <= 0) {
+  const updateShip = () => {
+    dispatch(takeHit());
+
+    console.log(Store.getState());
+    if (Store.getState().counter.health <= 0) {
       dispatch(reset());
       spawn.asteroids = [];
       setMode(2);
@@ -151,8 +155,7 @@ const Game = ({ setMode }) => {
     <div className="gameScreen">
       <div className="infoBoard">
         <p>Score: {count}</p>
-        <p>Lives: {lives}</p>
-        <p>Mothership: {motherShip}</p>
+        <p>Lives: {health}</p>
       </div>
       <div className="canvasCrate">
         <canvas id="canvas" ref={canvasRef}></canvas>
