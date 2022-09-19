@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { increment, reset } from "../redux/Score";
+
 import Laser from "./Laser";
 import LaserWeapon from "./LaserWeapon";
 import Player from "./Player";
@@ -20,6 +23,9 @@ const Game = ({ setMode }) => {
   const [lives, setLives] = useState(3);
   const [motherShip, setMotherShip] = useState(baseHealth);
   const [health, setHealth] = useState(3);
+
+  const { count } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     addKeyHandlers();
@@ -46,7 +52,6 @@ const Game = ({ setMode }) => {
       wpn.draw(ctx);
       spawn.newAsteroid();
       spawn.moveAll(ctx);
-      console.log(score);
 
       requestAnimationFrame(render);
     };
@@ -129,14 +134,15 @@ const Game = ({ setMode }) => {
   };
 
   const updateScore = () => {
-    points++;
-    setScore(points);
+    dispatch(increment());
   };
 
   const updateMotherShip = () => {
     baseHealth--;
     setMotherShip(baseHealth);
     if (baseHealth <= 0) {
+      dispatch(reset());
+      spawn.asteroids = [];
       setMode(2);
     }
   };
@@ -144,7 +150,7 @@ const Game = ({ setMode }) => {
   return (
     <div className="gameScreen">
       <div className="infoBoard">
-        <p>Score: {score}</p>
+        <p>Score: {count}</p>
         <p>Lives: {lives}</p>
         <p>Mothership: {motherShip}</p>
       </div>
