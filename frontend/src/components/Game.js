@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currentHealth, increment, reset, takeHit } from "../redux/Score";
+import { mainMenu, gameScreen, gameOver } from "../redux/MainState";
 
 import Store from "../redux/Store";
 
@@ -22,8 +23,6 @@ const Game = ({ setMode }) => {
 
   const { count, health } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
-
-  Store.subscribe(() => {});
 
   useEffect(() => {
     addKeyHandlers();

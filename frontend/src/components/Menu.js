@@ -1,6 +1,16 @@
 import { Button } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { mainMenu, gameScreen } from "../redux/MainState";
+import Store from "../redux/Store";
 
 const Menu = ({ setMode }) => {
+  const dispatch = useDispatch();
+  const { appState } = useSelector((state) => state.mainState);
+
+  const handleClick = () => {
+    dispatch(gameScreen());
+    console.log(Store.getState().mainState);
+  };
   return (
     <div className="Menupage">
       <Button
@@ -8,7 +18,7 @@ const Menu = ({ setMode }) => {
         fullWidth={true}
         color="secondary"
         size="large"
-        onClick={() => setMode(1)}
+        onClick={() => handleClick()}
       >
         Start Game
       </Button>
