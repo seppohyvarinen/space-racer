@@ -45,6 +45,7 @@ const Game = () => {
       ctx.beginPath();
       collisionCheck(spawn, wpn);
       checkIfEnemyPassed(spawn);
+      enemyAsteroidCollisionCheck();
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
@@ -117,6 +118,21 @@ const Game = () => {
         });
       });
     }
+  };
+
+  const enemyAsteroidCollisionCheck = () => {
+    spawn.enemies.forEach((enemy) => {
+      spawn.asteroids.forEach((asteroid) => {
+        if (
+          enemy.x <= asteroid.x + 50 &&
+          enemy.x >= asteroid.x &&
+          enemy.y >= asteroid.y &&
+          enemy.y <= asteroid.y + 50
+        ) {
+          enemy.changeDirection();
+        }
+      });
+    });
   };
 
   const checkIfEnemyPassed = (spawn) => {
