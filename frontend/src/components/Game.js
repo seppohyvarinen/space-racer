@@ -18,7 +18,7 @@ let wpn = new LaserWeapon();
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
 
-const Game = ({ setMode }) => {
+const Game = () => {
   const canvasRef = useRef(null);
 
   const { count, health } = useSelector((state) => state.counter);

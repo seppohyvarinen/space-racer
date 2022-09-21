@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { mainMenu, gameScreen, gameOver } from "../redux/MainState";
 
-const GameOver = ({ setMode }) => {
+const GameOver = () => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(mainMenu());
