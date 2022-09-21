@@ -19,11 +19,11 @@ export default class Asteroid {
   takeHit = () => {
     this.hp--;
 
-    if (this.hp == 2) {
+    if (this.hp === 2) {
       this.color = "#E83B47";
     }
 
-    if (this.hp == 1) {
+    if (this.hp === 1) {
       this.color = "#FF3D4A";
     }
 

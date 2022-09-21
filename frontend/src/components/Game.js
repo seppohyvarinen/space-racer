@@ -14,7 +14,7 @@ let x = 230;
 let leftPressed = false;
 let rightPressed = false;
 let shooting = false;
-let wpn = new LaserWeapon();
+let wpn = new LaserWeapon("pink");
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
 
@@ -48,7 +48,7 @@ const Game = () => {
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
-      spawn.newAsteroid();
+      spawn.spawning();
       spawn.moveAll(ctx);
 
       requestAnimationFrame(render);

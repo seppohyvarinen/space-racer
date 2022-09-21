@@ -4,9 +4,13 @@ export default class LaserWeapon {
   lasers = [];
   timer = 0;
 
+  constructor(color) {
+    this.color = color;
+  }
+
   fire(x, y, speed) {
     if (this.timer <= 0) {
-      this.lasers.push(new Laser(x, y, speed));
+      this.lasers.push(new Laser(x, y, speed, this.color));
 
       this.timer = 30;
     }
@@ -15,7 +19,7 @@ export default class LaserWeapon {
   }
 
   draw(ctx) {
-    if (this.lasers.length != 0) {
+    if (this.lasers.length !== 0) {
       this.lasers.forEach((laser) => {
         if (!laser.alive) {
           const index = this.lasers.indexOf(laser);

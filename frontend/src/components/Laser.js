@@ -1,12 +1,12 @@
 export default class Laser {
-  constructor(x, y, speed) {
+  constructor(x, y, speed, color) {
     this.x = x;
     this.y = y;
     this.speed = speed;
 
     this.width = 5;
     this.height = 20;
-    this.color = "red";
+    this.color = color;
     this.alive = true;
   }
 
