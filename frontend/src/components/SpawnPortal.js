@@ -10,9 +10,14 @@ export default class SpawnPortal {
 
   spawning() {
     if (this.spawnTimer <= 0) {
-      this.asteroids.push(
-        new Asteroid(Math.floor(Math.random() * (550 - 0 + 1)) + 0)
-      );
+      let newX = Math.floor(Math.random() * (550 - 0 + 1)) + 0;
+      while (newX === -1) {
+        newX = this.checkForOverLapping(
+          Math.floor(Math.random() * (550 - 0 + 1)) + 0
+        );
+      }
+
+      this.asteroids.push(new Asteroid(newX));
       this.spawnTimer = 300;
     }
     this.spawnTimer--;
@@ -48,6 +53,17 @@ export default class SpawnPortal {
         enemy.alive && enemy.draw(ctx);
       });
     }
+  }
+
+  checkForOverLapping(x) {
+    if (this.enemies.length !== 0) {
+      this.enemies.forEach((enemy) => {
+        if (enemy.x + 60 >= x || enemy.x - 20 < x) {
+          return x;
+        }
+      });
+    }
+    return -1;
   }
 
   locations() {

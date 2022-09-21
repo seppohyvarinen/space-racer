@@ -2,7 +2,7 @@ export default class Enemy {
   constructor(x) {
     this.x = x;
     this.y = 0;
-    this.speed = 1;
+    this.speed = 0.5;
 
     this.width = 40;
     this.height = 40;

@@ -124,10 +124,10 @@ const Game = () => {
     spawn.enemies.forEach((enemy) => {
       spawn.asteroids.forEach((asteroid) => {
         if (
-          enemy.x <= asteroid.x + 50 &&
-          enemy.x >= asteroid.x &&
-          enemy.y >= asteroid.y &&
-          enemy.y <= asteroid.y + 50
+          enemy.x <= asteroid.x + 100 &&
+          enemy.x >= asteroid.x - 30 &&
+          enemy.y >= asteroid.y - 30 &&
+          enemy.y <= asteroid.y + 100
         ) {
           enemy.changeDirection();
         }
