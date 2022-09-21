@@ -125,8 +125,8 @@ const Game = () => {
         if (
           enemy.y >= 630 &&
           enemy.y <= 700 &&
-          enemy.x >= player.x &&
-          enemy.x <= player.x + 50
+          enemy.x >= player.x - 20 &&
+          enemy.x <= player.x + 120
         ) {
           enemy.destroy();
           updateShip();
