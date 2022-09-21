@@ -46,6 +46,7 @@ const Game = () => {
       collisionCheck(spawn, wpn);
       checkIfEnemyPassed(spawn);
       enemyAsteroidCollisionCheck();
+      enemyCollisionCheck();
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
@@ -130,6 +131,21 @@ const Game = () => {
           enemy.y <= asteroid.y + 100
         ) {
           enemy.changeDirection();
+        }
+      });
+    });
+  };
+
+  const enemyCollisionCheck = () => {
+    spawn.enemies.forEach((enemy1) => {
+      spawn.enemies.forEach((enemy2) => {
+        if (
+          enemy1.id !== enemy2.id &&
+          enemy1.x <= enemy2.x + 40 &&
+          enemy1.x >= enemy2.x - 10
+        ) {
+          enemy1.changeDirection();
+          enemy2.changeDirection();
         }
       });
     });

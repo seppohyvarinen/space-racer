@@ -1,14 +1,16 @@
 export default class Enemy {
-  constructor(x) {
+  constructor(x, id) {
     this.x = x;
     this.y = 0;
     this.speed = 0.5;
 
     this.width = 40;
     this.height = 40;
+    this.depth = Math.floor(Math.random() * (100 - 0 + 1)) + 100;
     this.color = "green";
     this.alive = true;
     this.goingLeft = true;
+    this.id = id;
   }
 
   draw(ctx) {
@@ -18,7 +20,7 @@ export default class Enemy {
   }
 
   move() {
-    if (this.y < 100) {
+    if (this.y < this.depth) {
       this.y += this.speed;
     }
 
