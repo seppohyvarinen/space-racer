@@ -22,6 +22,7 @@ const Game = ({ setMode }) => {
   const canvasRef = useRef(null);
 
   const { count, health } = useSelector((state) => state.counter);
+  const { appState } = useSelector((state) => state.mainState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -146,7 +147,7 @@ const Game = ({ setMode }) => {
     if (Store.getState().counter.health <= 0) {
       dispatch(reset());
       spawn.asteroids = [];
-      setMode(2);
+      dispatch(gameOver());
     }
   };
 
