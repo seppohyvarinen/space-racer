@@ -9,13 +9,14 @@ export default class Player {
 
     this.weapon = weapon;
     this.x = x;
+    this.y = 650;
   }
   draw = (ctx) => {
     this.ready && ctx.drawImage(this.ship, this.x, 650, 140, 140);
   };
 
   shoot = () => {
-    this.weapon.fire(this.x + 70, 650, 3);
+    this.weapon.fire(this.x + 70, this.y, 3);
   };
 
   controls = (leftPressed, rightPressed, shooting) => {

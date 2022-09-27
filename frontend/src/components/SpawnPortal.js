@@ -7,6 +7,7 @@ export default class SpawnPortal {
   enemies = [];
   spawnTimer = 0;
   enemyID = 0;
+  level = 1;
 
   enemyTimer = 2000;
 
@@ -29,7 +30,8 @@ export default class SpawnPortal {
         new Enemy(
           Math.floor(Math.random() * (550 - 0 + 1)) + 0,
           this.enemyID,
-          new LaserWeapon("blue", 200, "enemy")
+          new LaserWeapon("blue", 200, "enemy"),
+          this.level
         )
       );
       this.enemyID++;
@@ -72,6 +74,10 @@ export default class SpawnPortal {
     }
     return true;
   }
+
+  levelUp = () => {
+    this.level++;
+  };
 
   locations() {
     return this.asteroids;

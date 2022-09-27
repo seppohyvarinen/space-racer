@@ -50,6 +50,7 @@ const Game = () => {
       enemyAsteroidCollisionCheck();
       enemyCollisionCheck();
       enemiesShoot(spawn);
+      enemyPlayerLaserHit(spawn, player);
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
@@ -180,6 +181,25 @@ const Game = () => {
           enemy.destroy();
           updateShip();
           console.log("Hit!");
+        }
+      });
+    }
+  };
+
+  const enemyPlayerLaserHit = (spawn, player) => {
+    if (spawn.enemies.length != 0) {
+      spawn.enemies.forEach((enemy) => {
+        if (enemy.weapon.lasers.length != 0) {
+          enemy.weapon.lasers.forEach((laser) => {
+            if (
+              player.y <= laser.y &&
+              laser.x >= player.x + 20 &&
+              laser.x <= player.x + 100
+            ) {
+              laser.destroy();
+              updateShip();
+            }
+          });
         }
       });
     }
