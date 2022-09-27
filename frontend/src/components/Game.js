@@ -131,6 +131,8 @@ const Game = () => {
     };
   }
 
+  // check if enemies collide with asteroids so enemies know to turn to other direction
+
   const enemyAsteroidCollisionCheck = () => {
     spawn.enemies.forEach((enemy) => {
       spawn.asteroids.forEach((asteroid) => {
@@ -146,6 +148,8 @@ const Game = () => {
     });
   };
 
+  // check if enemies collide with each other so enemies know to turn to other direction
+
   const enemyCollisionCheck = () => {
     spawn.enemies.forEach((enemy1) => {
       spawn.enemies.forEach((enemy2) => {
@@ -160,6 +164,8 @@ const Game = () => {
       });
     });
   };
+
+  // check if asteroid passed
 
   const checkIfEnemyPassed = (spawn) => {
     if (spawn.asteroids.length != 0) {
