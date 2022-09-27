@@ -8,12 +8,21 @@ export default class Laser {
     this.height = 20;
     this.color = color;
     this.alive = true;
+    this.type = type;
   }
 
   draw(ctx) {
     ctx.fillStyle = this.color;
-    this.y -= this.speed;
+    this.move();
     ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+
+  move() {
+    if (this.type === "enemy") {
+      this.y += this.speed;
+    } else {
+      this.y -= this.speed;
+    }
   }
 
   getX() {

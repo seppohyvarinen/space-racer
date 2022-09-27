@@ -1,5 +1,6 @@
 import Asteroid from "./Asteroid";
 import Enemy from "./Enemy";
+import LaserWeapon from "./LaserWeapon";
 
 export default class SpawnPortal {
   asteroids = [];
@@ -25,7 +26,11 @@ export default class SpawnPortal {
 
     if (this.enemyTimer <= 0 && this.enemies.length < 5) {
       this.enemies.push(
-        new Enemy(Math.floor(Math.random() * (550 - 0 + 1)) + 0, this.enemyID)
+        new Enemy(
+          Math.floor(Math.random() * (550 - 0 + 1)) + 0,
+          this.enemyID,
+          new LaserWeapon("blue", 200, "enemy")
+        )
       );
       this.enemyID++;
       this.enemyTimer = 1000;

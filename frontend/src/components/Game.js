@@ -14,7 +14,7 @@ let x = 230;
 let leftPressed = false;
 let rightPressed = false;
 let shooting = false;
-let wpn = new LaserWeapon("pink");
+let wpn = new LaserWeapon("pink", 70, "player");
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
 
@@ -49,6 +49,7 @@ const Game = () => {
       checkIfEnemyPassed(spawn);
       enemyAsteroidCollisionCheck();
       enemyCollisionCheck();
+      enemiesShoot(spawn);
       player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
       wpn.draw(ctx);
@@ -180,6 +181,14 @@ const Game = () => {
           updateShip();
           console.log("Hit!");
         }
+      });
+    }
+  };
+
+  const enemiesShoot = (spawn) => {
+    if (spawn.enemies.length != 0) {
+      spawn.enemies.forEach((enemy) => {
+        enemy.shoot();
       });
     }
   };

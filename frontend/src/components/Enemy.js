@@ -1,5 +1,5 @@
 export default class Enemy {
-  constructor(x, id) {
+  constructor(x, id, weapon) {
     this.x = x;
     this.y = 0;
     this.speed = 0.5;
@@ -11,13 +11,19 @@ export default class Enemy {
     this.alive = true;
     this.goingLeft = true;
     this.id = id;
+    this.weapon = weapon;
   }
 
   draw(ctx) {
     ctx.fillStyle = this.color;
 
     ctx.fillRect(this.x, this.y, this.width, this.height);
+    this.weapon.draw(ctx);
   }
+
+  shoot = () => {
+    this.weapon.fire(this.x + 20, this.y, 2);
+  };
 
   move() {
     if (this.y < this.depth) {

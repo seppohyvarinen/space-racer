@@ -4,15 +4,17 @@ export default class LaserWeapon {
   lasers = [];
   timer = 0;
 
-  constructor(color) {
+  constructor(color, weaponSpeed, type) {
     this.color = color;
+    this.weaponSpeed = weaponSpeed;
+    this.type = type;
   }
 
   fire(x, y, speed) {
     if (this.timer <= 0) {
-      this.lasers.push(new Laser(x, y, speed, this.color));
+      this.lasers.push(new Laser(x, y, speed, this.color, this.type));
 
-      this.timer = 30;
+      this.timer = this.weaponSpeed;
     }
 
     this.timer--;
@@ -35,7 +37,11 @@ export default class LaserWeapon {
     }
   }
   checkScreenBounds(laser) {
-    return laser.y <= -laser.height;
+    if (this.type === "enemy") {
+      return laser.y >= 700;
+    } else {
+      return laser.y <= -laser.height;
+    }
   }
 
   locations() {
