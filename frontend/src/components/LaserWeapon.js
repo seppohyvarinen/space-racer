@@ -38,7 +38,7 @@ export default class LaserWeapon {
   }
   checkScreenBounds(laser) {
     if (this.type === "enemy") {
-      return laser.y >= 700;
+      return laser.y >= 750;
     } else {
       return laser.y <= -laser.height;
     }

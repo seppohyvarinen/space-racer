@@ -22,7 +22,7 @@ export default class Enemy {
   }
 
   shoot = () => {
-    this.weapon.fire(this.x + 20, this.y, 2);
+    this.weapon.fire(this.x + 20, this.y + 15, 1.5);
   };
 
   move() {
