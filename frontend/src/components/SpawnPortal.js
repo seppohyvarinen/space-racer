@@ -19,7 +19,7 @@ export default class SpawnPortal {
       }
 
       this.asteroids.push(new Asteroid(newX));
-      this.spawnTimer = 400;
+      this.spawnTimer = Math.floor(Math.random() * (1000 - 0 + 1)) + 200;
     }
     this.spawnTimer--;
 

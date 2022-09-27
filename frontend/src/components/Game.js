@@ -27,6 +27,7 @@ const Game = () => {
 
   useEffect(() => {
     addKeyHandlers();
+
     const render = () => {
       const canvas = canvasRef.current;
       canvas.width = 600;
@@ -43,6 +44,7 @@ const Game = () => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
+      drawBgImg(ctx);
       collisionCheck(spawn, wpn);
       checkIfEnemyPassed(spawn);
       enemyAsteroidCollisionCheck();
@@ -120,6 +122,14 @@ const Game = () => {
       });
     }
   };
+
+  function drawBgImg(ctx) {
+    let bgImg = new Image();
+    bgImg.src = require("../assets/canvasBG.png");
+    bgImg.onload = () => {
+      ctx.drawImage(bgImg, 0, 0, 600, 800);
+    };
+  }
 
   const enemyAsteroidCollisionCheck = () => {
     spawn.enemies.forEach((enemy) => {

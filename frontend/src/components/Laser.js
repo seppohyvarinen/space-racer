@@ -1,5 +1,5 @@
 export default class Laser {
-  constructor(x, y, speed, color) {
+  constructor(x, y, speed, color, type) {
     this.x = x;
     this.y = y;
     this.speed = speed;

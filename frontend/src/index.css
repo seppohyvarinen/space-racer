@@ -64,7 +64,10 @@
 #canvas {
   width: 600px;
   height: 800px;
-  background-color: #232323;
+
+  background-image: url("./assets/canvasBG.png");
+  background-repeat: no-repeat;
+  background-size: 600px 800px;
 }
 
 .gameControls {
