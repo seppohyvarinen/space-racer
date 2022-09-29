@@ -48,6 +48,7 @@ const Game = () => {
       collisionCheck(spawn, wpn);
       checkIfEnemyPassed(spawn);
       enemyAsteroidCollisionCheck();
+      playerEnemyLaserHit();
       enemyCollisionCheck();
       enemiesShoot(spawn);
       enemyPlayerLaserHit(spawn, player);
@@ -116,6 +117,8 @@ const Game = () => {
           ) {
             enemy.takeHit();
             laser.destroy();
+            console.log("täällä");
+
             if (!enemy.alive) {
               updateScore();
             }
@@ -167,10 +170,30 @@ const Game = () => {
     });
   };
 
+  const playerEnemyLaserHit = () => {
+    if (spawn.enemies.length !== 0 && wpn.lasers.length !== 0) {
+      spawn.enemies.forEach((enemy) => {
+        wpn.lasers.forEach((laser) => {
+          if (
+            enemy.y >= laser.y &&
+            laser.x >= enemy.x &&
+            laser.x <= enemy.x + 30
+          ) {
+            enemy.takeHit();
+            laser.destroy();
+            if (!enemy.alive) {
+              updateScore();
+            }
+          }
+        });
+      });
+    }
+  };
+
   // check if asteroid passed
 
   const checkIfEnemyPassed = (spawn) => {
-    if (spawn.asteroids.length != 0) {
+    if (spawn.asteroids.length !== 0) {
       spawn.asteroids.forEach((enemy) => {
         if (
           enemy.y >= 630 &&
@@ -187,7 +210,7 @@ const Game = () => {
   };
 
   const enemyPlayerLaserHit = (spawn, player) => {
-    if (spawn.enemies.length != 0) {
+    if (spawn.enemies.length !== 0) {
       spawn.enemies.forEach((enemy) => {
         if (enemy.weapon.lasers.length != 0) {
           enemy.weapon.lasers.forEach((laser) => {
