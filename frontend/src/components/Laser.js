@@ -12,6 +12,7 @@ export default class Laser {
   }
 
   draw(ctx) {
+    ctx.beginPath();
     ctx.fillStyle = this.color;
     this.move();
     ctx.fillRect(this.x, this.y, this.width, this.height);

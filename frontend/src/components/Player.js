@@ -2,8 +2,11 @@ export default class Player {
   constructor(weapon, x) {
     this.ship = new Image();
     this.ship.src = require("../assets/ship.png");
+
     this.ready = false;
     this.ship.onload = () => {
+      this.ship.width = 140;
+      this.ship.height = 140;
       this.ready = true;
     };
 
@@ -12,7 +15,10 @@ export default class Player {
     this.y = 650;
   }
   draw = (ctx) => {
-    this.ready && ctx.drawImage(this.ship, this.x, 650, 140, 140);
+    ctx.beginPath();
+    this.ready &&
+      ctx.drawImage(this.ship, this.x, 650, this.ship.width, this.ship.height);
+    console.log("heigth: " + this.ship.height);
   };
 
   shoot = () => {

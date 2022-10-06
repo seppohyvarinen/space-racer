@@ -26,24 +26,15 @@ const Game = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    addKeyHandlers();
-
     const render = () => {
+      addKeyHandlers();
       const canvas = canvasRef.current;
       canvas.width = 600;
       canvas.height = 800;
       const ctx = canvas.getContext("2d");
 
-      const setStyle = () => {
-        ctx.shadowColor = "d53";
-        ctx.shadowBlur = 200;
-        ctx.lineJoin = "bevel";
-      };
-
-      setStyle();
-
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
+
       drawBgImg(ctx);
       collisionCheck(spawn, wpn);
       checkIfEnemyPassed(spawn);

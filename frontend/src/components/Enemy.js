@@ -2,7 +2,7 @@ export default class Enemy {
   constructor(x, id, weapon, lv) {
     this.x = x;
     this.y = 0;
-    this.speed = 0.5;
+    this.speed = 1;
 
     this.width = 40;
     this.height = 40;
@@ -16,6 +16,7 @@ export default class Enemy {
   }
 
   draw(ctx) {
+    ctx.beginPath();
     ctx.fillStyle = this.color;
 
     ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -23,7 +24,7 @@ export default class Enemy {
   }
 
   shoot = () => {
-    this.weapon.fire(this.x + 20, this.y + 15, 1.5);
+    this.weapon.fire(this.x + 20, this.y + 15, 2);
   };
 
   takeHit = () => {

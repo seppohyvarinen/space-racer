@@ -5,8 +5,7 @@ export default class Asteroid {
     this.hp = 3;
     this.width = 50;
     this.height = 50;
-    this.shadowColor = "d53";
-    this.shadowBlur = 200;
+
     this.lineJoin = "bevel";
     this.color = "#CA2C36";
     this.alive = true;
@@ -33,9 +32,7 @@ export default class Asteroid {
   };
 
   draw(ctx) {
-    ctx.shadowColor = "white";
-    ctx.shadowBlur = 40;
-    ctx.lineJoin = "bevel";
+    ctx.beginPath();
     ctx.lineWidth = 10;
     ctx.strokeStyle = "black";
     ctx.fillStyle = this.color;

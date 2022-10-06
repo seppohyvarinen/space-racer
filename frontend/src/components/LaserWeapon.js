@@ -4,7 +4,7 @@ export default class LaserWeapon {
   lasers = [];
   timer = 0;
 
-  constructor(color, weaponSpeed, type) {
+  constructor(color, weaponSpeed, type, lasers) {
     this.color = color;
     this.weaponSpeed = weaponSpeed;
     this.type = type;
@@ -21,6 +21,7 @@ export default class LaserWeapon {
   }
 
   draw(ctx) {
+    ctx.beginPath();
     if (this.lasers.length !== 0) {
       this.lasers.forEach((laser) => {
         if (!laser.alive) {
