@@ -9,6 +9,7 @@ import Laser from "./Laser";
 import LaserWeapon from "./LaserWeapon";
 import Player from "./Player";
 import SpawnPortal from "./SpawnPortal";
+import Hearts from "./Hearts";
 
 let x = 230;
 let leftPressed = false;
@@ -17,6 +18,7 @@ let shooting = false;
 let wpn = new LaserWeapon("pink", 70, "player");
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
+let hearts = new Hearts();
 
 const Game = () => {
   const canvasRef = useRef(null);
@@ -24,6 +26,7 @@ const Game = () => {
   const { count, health } = useSelector((state) => state.counter);
   const { appState } = useSelector((state) => state.mainState);
   const dispatch = useDispatch();
+  const [heartsLoad, setHeartsLoad] = useState(false);
 
   useEffect(() => {
     const render = () => {
@@ -35,7 +38,6 @@ const Game = () => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      drawBgImg(ctx);
       collisionCheck(spawn, wpn);
       checkIfEnemyPassed(spawn);
       enemyAsteroidCollisionCheck();
@@ -48,6 +50,7 @@ const Game = () => {
       wpn.draw(ctx);
       spawn.spawning();
       spawn.moveAll(ctx);
+      hearts.draw(ctx, Store.getState().counter.health);
 
       requestAnimationFrame(render);
     };
@@ -108,7 +111,6 @@ const Game = () => {
           ) {
             enemy.takeHit();
             laser.destroy();
-            console.log("täällä");
 
             if (!enemy.alive) {
               updateScore();
@@ -119,13 +121,14 @@ const Game = () => {
     }
   };
 
-  function drawBgImg(ctx) {
+  const drawBgImg = (ctx) => {
     let bgImg = new Image();
     bgImg.src = require("../assets/canvasBG.png");
     bgImg.onload = () => {
       ctx.drawImage(bgImg, 0, 0, 600, 800);
+      console.log("shouldnt be here");
     };
-  }
+  };
 
   // check if enemies collide with asteroids so enemies know to turn to other direction
 

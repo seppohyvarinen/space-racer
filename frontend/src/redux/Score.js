@@ -4,7 +4,7 @@ export const counterSlice = createSlice({
   name: "counter",
   initialState: {
     count: 0,
-    health: 60,
+    health: 3,
   },
   reducers: {
     increment: (state) => {
