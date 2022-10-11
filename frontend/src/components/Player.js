@@ -1,7 +1,7 @@
 export default class Player {
   constructor(weapon, x) {
     this.ship = new Image();
-    this.ship.src = require("../assets/ship.png");
+    this.ship.src = require("../assets/Valmissaucer.png");
 
     this.ready = false;
     this.ship.onload = () => {
