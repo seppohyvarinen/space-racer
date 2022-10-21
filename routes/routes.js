@@ -5,8 +5,9 @@ let connections = require("../connections/connections.js");
 let scores = express.Router();
 
 scores.get("/", async (req, res) => {
+  console.log("heres");
   try {
-    let all = await connections.connect();
+    let all = await connections();
     res.send(all);
   } catch (error) {
     res.statusCode = 404;
