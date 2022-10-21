@@ -1,6 +1,6 @@
 // tba
 const express = require("express");
 
-var translations = express.Router();
+let scores = express.Router();
 
-module.exports = translations;
+module.exports = scores;
