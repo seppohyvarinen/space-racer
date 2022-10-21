@@ -12,6 +12,7 @@ async function connect() {
 
     const result = await con.query("Select * from SpaceRacerHiScores");
     console.table(result[0]);
+    return result[0];
   } catch (e) {
     console.error(e);
   }
