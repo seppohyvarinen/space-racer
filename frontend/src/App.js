@@ -7,6 +7,7 @@ import GameOver from "./components/GameOver";
 import { useDispatch, useSelector } from "react-redux";
 
 import Store from "./redux/Store";
+import HiScores from "./components/HiScores";
 
 function App() {
   const { appState } = useSelector((state) => state.mainState);
@@ -16,6 +17,7 @@ function App() {
       {Store.getState().mainState.appState === 0 && <Menu />}
       {Store.getState().mainState.appState === 1 && <Game />}
       {Store.getState().mainState.appState === 2 && <GameOver />}
+      {Store.getState().mainState.appState === 3 && <HiScores />}
     </div>
   );
 }

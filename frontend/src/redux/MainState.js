@@ -15,10 +15,14 @@ export const mainStateSlice = createSlice({
     gameOver: (state) => {
       state.appState = 2;
     },
+    hiScores: (state) => {
+      state.appState = 3;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { mainMenu, gameScreen, gameOver } = mainStateSlice.actions;
+export const { mainMenu, gameScreen, gameOver, hiScores } =
+  mainStateSlice.actions;
 
 export default mainStateSlice.reducer;

@@ -1,15 +1,19 @@
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { mainMenu, gameScreen } from "../redux/MainState";
+import { mainMenu, gameScreen, hiScores } from "../redux/MainState";
 import Store from "../redux/Store";
 
 const Menu = ({ setMode }) => {
   const dispatch = useDispatch();
   const { appState } = useSelector((state) => state.mainState);
 
-  const handleClick = () => {
+  const startGame = () => {
     dispatch(gameScreen());
     console.log(Store.getState().mainState);
+  };
+
+  const openHiScores = () => {
+    dispatch(hiScores());
   };
   return (
     <div className="Menupage">
@@ -18,7 +22,7 @@ const Menu = ({ setMode }) => {
         fullWidth={true}
         color="secondary"
         size="large"
-        onClick={() => handleClick()}
+        onClick={() => startGame()}
       >
         Start Game
       </Button>
@@ -28,6 +32,7 @@ const Menu = ({ setMode }) => {
         fullWidth={true}
         color="secondary"
         size="large"
+        onClick={() => openHiScores()}
       >
         View Highscores
       </Button>
