@@ -10,7 +10,9 @@ async function connect() {
       database: process.env.DB_DB,
     });
 
-    const result = await con.query("Select * from SpaceRacerHiScores");
+    const result = await con.query(
+      "Select * from SpaceRacerHiScores order by score desc"
+    );
     console.table(result[0]);
     return result[0];
   } catch (e) {
