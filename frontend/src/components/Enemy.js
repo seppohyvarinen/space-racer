@@ -4,10 +4,16 @@ export default class Enemy {
     this.y = 0;
     this.speed = 1;
 
-    this.width = 40;
-    this.height = 40;
+    this.ship = new Image();
+    this.ship.src = require("../assets/Enemy.png");
+    this.ready = false;
+    this.ship.onload = () => {
+      this.ship.width = 100;
+      this.ship.height = 100;
+      this.ready = true;
+    };
+
     this.depth = Math.floor(Math.random() * (100 - 0 + 1)) + 100;
-    this.color = "green";
     this.alive = true;
     this.goingLeft = true;
     this.id = id;
@@ -17,10 +23,16 @@ export default class Enemy {
 
   draw(ctx) {
     ctx.beginPath();
-    ctx.fillStyle = this.color;
 
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-    this.weapon.draw(ctx);
+    this.ready &&
+      ctx.drawImage(
+        this.ship,
+        this.x,
+        this.y,
+        this.ship.width,
+        this.ship.height
+      );
+    this.ready && this.weapon.draw(ctx);
   }
 
   shoot = () => {

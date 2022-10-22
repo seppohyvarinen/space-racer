@@ -24,18 +24,18 @@ const Game = () => {
   const canvasRef = useRef(null);
 
   const { count, health } = useSelector((state) => state.counter);
-  const appState = useSelector((state) => state.main.appState);
+  // const {appState} = useSelector((state) => state.main.appState);
   const dispatch = useDispatch();
   const [heartsLoad, setHeartsLoad] = useState(false);
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    canvas.width = 600;
+    canvas.height = 800;
+    const ctx = canvas.getContext("2d");
     const render = () => {
       addKeyHandlers();
-      const canvas = canvasRef.current;
-      canvas.width = 600;
-      canvas.height = 800;
-      const ctx = canvas.getContext("2d");
-
+      ctx.beginPath();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       collisionCheck(spawn, wpn);
