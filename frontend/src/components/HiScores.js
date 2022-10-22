@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setScoreTable } from "../redux/HiScoreSlice";
+import { setScoreTable, getHiScores } from "../redux/HiScoreSlice";
 
 import axios from "axios";
 import Store from "../redux/Store";
 
 const HiScores = () => {
   const dispatch = useDispatch();
+  const scoretable = useSelector((state) => state.HiScore.scoretable);
   const fetchScore = async () => {
     try {
       let result = await axios.get("/scores");
       console.log(result.data);
       dispatch(setScoreTable(result.data));
-      console.log(Store.getState().HiScore.scoretable);
+      console.log(scoretable);
     } catch (error) {
       alert(error);
     }
@@ -20,7 +21,14 @@ const HiScores = () => {
   useEffect(() => {
     fetchScore();
   }, []);
-  return <div>testing</div>;
+
+  return (
+    <div>
+      {scoretable.map(({ player_name, score }) => (
+        <div style={{ color: "white" }}>{player_name + " - " + score}</div>
+      ))}
+    </div>
+  );
 };
 
 export default HiScores;

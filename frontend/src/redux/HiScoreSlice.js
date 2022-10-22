@@ -7,11 +7,14 @@ export const hiScoreSlice = createSlice({
   },
   reducers: {
     setScoreTable: (state, action) => {
-      state.scoretable = action.payload;
+      state.scoretable = [...action.payload];
+    },
+    getHiScores: (state) => {
+      return state.scoretable;
     },
   },
 });
 
-export const { setScoreTable } = hiScoreSlice.actions;
+export const { setScoreTable, getHiScores } = hiScoreSlice.actions;
 
 export default hiScoreSlice.reducer;

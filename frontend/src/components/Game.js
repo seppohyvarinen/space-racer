@@ -24,7 +24,7 @@ const Game = () => {
   const canvasRef = useRef(null);
 
   const { count, health } = useSelector((state) => state.counter);
-  const { appState } = useSelector((state) => state.mainState);
+  const appState = useSelector((state) => state.main.appState);
   const dispatch = useDispatch();
   const [heartsLoad, setHeartsLoad] = useState(false);
 
