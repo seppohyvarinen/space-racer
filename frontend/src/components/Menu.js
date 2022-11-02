@@ -1,11 +1,23 @@
-import { Button } from "@material-ui/core";
+import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { mainMenu, gameScreen, hiScores } from "../redux/MainState";
 import Store from "../redux/Store";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { makeStyles } from "@material-ui/core/styles";
+
+const font = '"Press Start 2P", cursive';
+
+const useStyles = makeStyles({
+  root: {
+    fontFamily: font,
+  },
+});
+
 const Menu = ({ setMode }) => {
   const dispatch = useDispatch();
   const { appState } = useSelector((state) => state.mainState);
+  const classes = useStyles();
 
   const startGame = () => {
     dispatch(gameScreen());
@@ -15,9 +27,11 @@ const Menu = ({ setMode }) => {
   const openHiScores = () => {
     dispatch(hiScores());
   };
+
   return (
     <div className="Menupage">
       <Button
+        className={classes.root}
         variant="outlined"
         fullWidth={true}
         color="secondary"
@@ -26,7 +40,6 @@ const Menu = ({ setMode }) => {
       >
         Start Game
       </Button>
-
       <Button
         variant="outlined"
         fullWidth={true}
@@ -36,7 +49,6 @@ const Menu = ({ setMode }) => {
       >
         View Highscores
       </Button>
-
       <Button
         variant="outlined"
         fullWidth={true}

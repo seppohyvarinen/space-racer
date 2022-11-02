@@ -1,14 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 .App {
   background-color: black;
   height: 100vh;
   display: grid;
   place-items: center;
+  font-family: "Press Start 2P", cursive;
 }
 
 .Menupage {
   display: grid;
   place-items: center;
   height: 500px;
+}
+
+.MuiButton-root {
+  font-family: "Press Start 2P", cursive;
 }
 
 .Menubtn {

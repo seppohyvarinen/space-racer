@@ -169,7 +169,7 @@ const Game = () => {
       spawn.enemies.forEach((enemy) => {
         wpn.lasers.forEach((laser) => {
           if (
-            enemy.y >= laser.y &&
+            enemy.y + 30 >= laser.y &&
             laser.x >= enemy.x &&
             laser.x <= enemy.x + 30
           ) {

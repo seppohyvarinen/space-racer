@@ -14,7 +14,7 @@ export default class Hearts {
     if (this.ready) {
       ctx.beginPath();
 
-      let x = 350;
+      let x = 500;
 
       for (let i = 0; i < amount; i++) {
         ctx.drawImage(
@@ -26,7 +26,7 @@ export default class Hearts {
           this.heart.height
         );
         console.log("ptööt" + amount);
-        x = x + 80;
+        x = x - 80;
       }
     }
   };
