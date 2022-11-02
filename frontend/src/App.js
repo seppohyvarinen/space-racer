@@ -19,9 +19,7 @@ function App() {
       },
     },
     typography: {
-      button: {
-        fontFamily: [[]],
-      },
+      fontFamily: ["Press Start 2P", "cursive"].join(","),
     },
   });
 

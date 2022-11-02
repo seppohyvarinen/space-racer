@@ -14,6 +14,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { createTheme } from "@mui/material/styles";
+import "../hiscore.css";
 
 const HiScores = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const HiScores = () => {
   return (
     <div style={{ width: "100%" }}>
       <TableContainer className={classes.tableContainer} component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table className={classes} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableHeaderCell}>Name</TableCell>
@@ -63,6 +64,9 @@ const HiScores = () => {
 export default HiScores;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    fontFamily: ["Press Start 2P", "cursive"].join(","),
+  },
   table: {
     minWidth: 400,
     maxWidth: 500,
