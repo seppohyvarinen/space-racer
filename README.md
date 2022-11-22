@@ -8,7 +8,9 @@ This game is built using React and Vanilla JavaScript in frontend and Node.js in
 Screenshots of current progress:
 
 Main game:
+
 ![Demo pic](screenshots/maingame.jpg)
 
 Menu:
+
 ![Demo pic](screenshots/menu.jpg)
