@@ -1,15 +1,15 @@
 const express = require("express");
 const app = express();
 
-const port = process.env.PORT || 8080;
-
-const routes = require("./routes/routes.js");
+const port = 8080;
 
 let cors = require("cors");
+
 app.use(cors());
 app.use(express.static("frontend/build"));
 app.use(express.json());
-app.use("/scores", routes);
+const scores = require("./routes/routes.js");
+app.use("/scores", scores);
 
 const server = app.listen(port, () => {
   console.log(`Listening on port ${server.address().port}`);

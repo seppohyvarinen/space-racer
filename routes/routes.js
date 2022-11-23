@@ -5,6 +5,7 @@ let connections = require("../connections/connections.js");
 let scores = express.Router();
 
 scores.get("/", async (req, res) => {
+  console.log("called");
   try {
     let all = await connections();
     res.send(all);

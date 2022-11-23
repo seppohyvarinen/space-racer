@@ -5,6 +5,7 @@ export default class Asteroid {
     this.hp = 3;
     this.width = 50;
     this.height = 50;
+    this.speed = 2;
 
     this.lineJoin = "bevel";
     this.color = "#CA2C36";
@@ -12,7 +13,7 @@ export default class Asteroid {
   }
 
   move = () => {
-    this.y = this.y + 1;
+    this.y = this.y + this.speed;
   };
 
   takeHit = () => {

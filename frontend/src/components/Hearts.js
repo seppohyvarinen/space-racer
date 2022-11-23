@@ -25,7 +25,6 @@ export default class Hearts {
           this.heart.width,
           this.heart.height
         );
-        console.log("ptööt" + amount);
         x = x - 80;
       }
     }

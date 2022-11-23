@@ -15,7 +15,7 @@ let x = 230;
 let leftPressed = false;
 let rightPressed = false;
 let shooting = false;
-let wpn = new LaserWeapon("pink", 70, "player");
+let wpn = new LaserWeapon("pink", 50, "player");
 let player = new Player(wpn, x);
 let spawn = new SpawnPortal();
 let hearts = new Hearts();
@@ -45,8 +45,9 @@ const Game = () => {
       enemyCollisionCheck();
       enemiesShoot(spawn);
       enemyPlayerLaserHit(spawn, player);
-      player.draw(ctx, x);
       player.controls(leftPressed, rightPressed, shooting);
+      player.draw(ctx, x);
+
       wpn.draw(ctx);
       spawn.spawning();
       spawn.moveAll(ctx);

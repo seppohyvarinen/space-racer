@@ -2,7 +2,7 @@ export default class Enemy {
   constructor(x, id, weapon, lv) {
     this.x = x;
     this.y = 0;
-    this.speed = 1;
+    this.speed = Math.round(3);
 
     this.ship = new Image();
     this.ship.src = require("../assets/Enemy.png");
@@ -36,7 +36,7 @@ export default class Enemy {
   }
 
   shoot = () => {
-    this.weapon.fire(this.x + 20, this.y + 15, 2);
+    this.weapon.fire(this.x + 20, this.y + 15, 3);
   };
 
   takeHit = () => {

@@ -13,27 +13,27 @@ export default class Player {
     this.weapon = weapon;
     this.x = x;
     this.y = 650;
+    this.speed = 4;
   }
   draw = (ctx) => {
     ctx.beginPath();
     this.ready &&
       ctx.drawImage(this.ship, this.x, 650, this.ship.width, this.ship.height);
-    console.log("heigth: " + this.ship.height);
   };
 
   shoot = () => {
-    this.weapon.fire(this.x + 70, this.y, 3);
+    this.weapon.fire(this.x + 70, this.y, 4);
   };
 
   controls = (leftPressed, rightPressed, shooting) => {
     if (leftPressed) {
       if (this.checkScreenBoundsLeft()) {
-        this.x = this.x - 2;
+        this.x = this.x - this.speed;
       }
     }
     if (rightPressed) {
       if (this.checkScreenBoundsRight()) {
-        this.x = this.x + 2;
+        this.x = this.x + this.speed;
       }
     }
 
